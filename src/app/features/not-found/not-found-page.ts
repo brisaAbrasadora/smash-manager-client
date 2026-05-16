@@ -1,0 +1,69 @@
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { RouterLink } from "@angular/router";
+
+@Component({
+  selector: 'sm-not-found-page',
+  imports: [RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <section class="not-found" aria-labelledby="not-found-title">
+      <p class="eyebrow">404</p>
+
+      <h1 id="not-found-title">Página no encontrada</h1>
+
+      <p>
+        La ruta solicitada no existe o ya no está disponible.
+      </p>
+
+      <a routerLink="/tournaments">
+        Volver a torneos
+      </a>
+    </section>
+  `, styles: `
+    .not-found {
+      max-width: 40rem;
+      padding: 3rem 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.5rem;
+      color: #66666f;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    p {
+      margin: 1rem 0 0;
+      color: #4f4f57;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.5rem;
+      margin-top: 1.5rem;
+      padding: 0 1rem;
+      border-radius: 0.5rem;
+      background: #181818;
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background: #303030;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #6b9cff;
+      outline-offset: 3px;
+    }
+  `,
+})
+export class NotFoundPage {}

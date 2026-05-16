@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #d7d7d7;
+  background: #ffffff;
+}
+
+.app-brand {
+  color: #181818;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-nav a {
+  color: #303030;
+  text-decoration: none;
+}
+
+.app-nav a:hover {
+  text-decoration: underline;
+}
+
+.app-nav a.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.app-main {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0;
+}
