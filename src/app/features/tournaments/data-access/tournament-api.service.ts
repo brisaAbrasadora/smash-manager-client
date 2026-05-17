@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { TournamentDetail, TournamentSummary } from "../models/tournament.model";
 
 @Injectable({providedIn: 'root'})
-export class TournamentApi {
+export class TournamentApiService {
   private readonly http = inject(HttpClient);
 
   findAll(): Observable<TournamentSummary[]> {

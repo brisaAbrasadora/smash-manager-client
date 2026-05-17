@@ -1,0 +1,60 @@
+<header class="page-header">
+  <div>
+    <h1>Torneos</h1>
+    <p>Gestiona los torneos sincronizados con Smash Manager.</p>
+  </div>
+
+  <a class="primary-action" routerLink="/tournaments/new"> Crear torneo </a>
+</header>
+
+@if (tournaments(); as tournaments) {
+  @if (tournaments.length > 0) {
+    <section class="tournament-grid" aria-label="Listado de torneos">
+      @for (tournament of tournaments; track tournament.externalId) {
+        <article class="tournament-card">
+          <header>
+            <h2>
+              <a [routerLink]="['/tournaments', tournament.externalId]">
+                {{ tournament.name }}
+              </a>
+            </h2>
+
+            <!-- <span class="status">
+                  {{ tournament.status }}
+                </span> -->
+          </header>
+
+          <dl>
+            <div>
+              <dt>Inicio</dt>
+              <dd>{{ tournament.startAt }}</dd>
+            </div>
+
+            <div>
+              <dt>Jugadores</dt>
+              <dd>{{ 0 }}</dd>
+            </div>
+
+            <div>
+              <dt>Formato</dt>
+              <dd>{{ tournament.isOnline ? 'Online' : 'Offline' }}</dd>
+            </div>
+
+            @if (tournament.city) {
+              <div>
+                <dt>City</dt>
+                <dd>{{ tournament.city }}</dd>
+              </div>
+            }
+          </dl>
+
+          <a class="secondary-action" [routerLink]="['/tournaments', tournament.externalId]">
+            See in detail
+          </a>
+        </article>
+      }
+    </section>
+  } @else {
+    <p>No hay torneos todavía.</p>
+  }
+}

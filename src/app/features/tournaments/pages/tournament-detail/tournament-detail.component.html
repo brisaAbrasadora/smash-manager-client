@@ -1,0 +1,48 @@
+<header class="page-header">
+  <div>
+    <a class="back-link" routerLink="/tournaments">← Volver a torneos</a>
+    <h1>{{ tournament().name }}</h1>
+    <p>{{ tournament().description || 'Sin descripción.' }}</p>
+  </div>
+</header>
+
+<section class="detail-card" aria-labelledby="tournament-info-title">
+  <h2 id="tournament-info-title">Información del torneo</h2>
+
+  <dl>
+    <div>
+      <dt>Inicio</dt>
+      <dd>{{ tournament().startAt | date: 'dd/MM/yyyy' }}</dd>
+    </div>
+
+    <div>
+      <dt>Fin</dt>
+      <dd>{{ 'Sin definir' }}</dd>
+    </div>
+
+    <div>
+      <dt>Jugadores</dt>
+      <dd>{{ 0 }}</dd>
+    </div>
+
+    <div>
+      <dt>Máximo de jugadores</dt>
+      <dd>{{ 'Sin límite' }}</dd>
+    </div>
+
+    <div>
+      <dt>Formato</dt>
+      <dd>{{ tournament().isOnline ? 'Online' : 'Presencial' }}</dd>
+    </div>
+
+    <div>
+      <dt>Ciudad</dt>
+      <dd>{{ tournament().city || 'Sin definir' }}</dd>
+    </div>
+
+    <!-- <div>
+            <dt>Ruleset</dt>
+            <dd>{{ tournament().rulesetName || 'Sin ruleset' }}</dd>
+          </div> -->
+  </dl>
+</section>
