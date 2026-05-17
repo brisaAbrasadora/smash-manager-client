@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { tournamentsResolver } from './resolvers/tournaments.resolver';
-import { tournamentDetailResolver } from './resolvers/tournament-detail.resolver';
+import { tournamentSummaryResolver } from './resolvers/tournament-summary.resolver';
 import { tournamentIdMatcher } from './routing/tournament-id.matcher';
+import { tournamentResolver } from './resolvers/tournament.resolver';
 
 export const TOURNAMENT_ROUTES: Routes = [
   {
@@ -9,7 +9,7 @@ export const TOURNAMENT_ROUTES: Routes = [
     loadComponent: () =>
       import('./pages/tournaments-page/tournaments-page.component').then((m) => m.TournamentsPage),
     resolve: {
-      tournaments: tournamentsResolver,
+      tournaments: tournamentSummaryResolver,
     },
     title: 'Torneos | Smash Manager',
   },
@@ -17,10 +17,10 @@ export const TOURNAMENT_ROUTES: Routes = [
     matcher: tournamentIdMatcher,
     loadComponent: () =>
       import('./pages/tournament-detail/tournament-detail.component').then(
-        (m) => m.TournamentDetailPage,
+        (m) => m.TournamentDetail,
       ),
     resolve: {
-      tournament: tournamentDetailResolver,
+      tournament: tournamentResolver,
     },
     title: 'Tournament detail | Smash Manager',
   },

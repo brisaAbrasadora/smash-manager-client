@@ -1,9 +1,9 @@
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
-import { TournamentDetail } from '../models/tournament.model';
+import { Tournament } from '../models/tournament.model';
 import { inject } from '@angular/core';
 import { TournamentApiService } from '../data-access/tournament-api.service';
 
-export const tournamentDetailResolver: ResolveFn<TournamentDetail> = (
+export const tournamentResolver: ResolveFn<Tournament> = (
   route: ActivatedRouteSnapshot,
 ) => {
   const tournamentApi = inject(TournamentApiService);

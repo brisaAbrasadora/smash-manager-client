@@ -11,7 +11,7 @@ export interface TournamentSummary {
   primaryContact: string;
 }
 
-export interface TournamentDetail {
+export interface Tournament {
   externalId: number;
   name: string;
   city: string;
