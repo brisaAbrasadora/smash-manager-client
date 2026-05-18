@@ -14,14 +14,6 @@ export const routes: Routes = [
     title: 'Login | Smash Manager',
   },
   {
-    path: 'auth/callback',
-    loadComponent: () =>
-      import('./core/auth/pages/auth-callback-page/auth-callback-page.component').then(
-        (m) => m.AuthCallbackPage,
-      ),
-    title: 'Login callback | Smash Manager',
-  },
-  {
     path: 'tournaments',
     canMatch: [authGuard],
     loadChildren: () =>
