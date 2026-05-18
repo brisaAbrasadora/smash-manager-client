@@ -1,4 +1,4 @@
-import { UrlMatchResult, UrlSegment } from "@angular/router";
+import { UrlMatchResult, UrlSegment } from '@angular/router';
 
 export function tournamentIdMatcher(segments: UrlSegment[]): UrlMatchResult | null {
   if (segments.length !== 1) {

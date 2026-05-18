@@ -1,0 +1,9 @@
+<section aria-live="polite">
+  @if (failed()) {
+    <h1>Error while logging in</h1>
+    <p>Try again from the login screen.</p>
+  } @else {
+    <h1>Completing login...</h1>
+    <p>We are recovering your session</p>
+  }
+</section>

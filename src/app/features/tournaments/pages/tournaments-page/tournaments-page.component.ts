@@ -4,7 +4,6 @@ import { TournamentSummary } from '../../models/tournament.model';
 
 @Component({
   selector: 'sm-tournaments-page',
-  standalone: true,
   imports: [RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './tournaments-page.component.html',

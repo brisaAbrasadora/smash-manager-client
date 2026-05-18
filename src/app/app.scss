@@ -45,3 +45,17 @@
   margin: 0 auto;
   padding: 2rem 0;
 }
+.logout-button {
+  border: 1px solid currentColor;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.logout-button:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}

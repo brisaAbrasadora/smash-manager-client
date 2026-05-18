@@ -6,6 +6,10 @@
       >Tournaments</a
     >
   </nav>
+
+  @if (isAuthenticated()) {
+    <button type="button" class="logout-button" (click)="logout()">Logout</button>
+  }
 </header>
 
 <main class="app-main">

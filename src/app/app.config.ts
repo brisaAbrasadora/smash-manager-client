@@ -3,12 +3,12 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { devAuthInterceptor } from './core/auth/interceptors/dev-auth.interceptor';
+import { authInterceptor } from './core/auth/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withFetch(), withInterceptors([devAuthInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
   ],
 };
