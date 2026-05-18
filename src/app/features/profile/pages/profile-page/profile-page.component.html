@@ -1,0 +1,73 @@
+<header class="page-header">
+  <div>
+    <p class="eyebrow">Profile</p>
+    <h1>{{ displayName() }}</h1>
+    <p>Check your profile data</p>
+  </div>
+</header>
+
+<section class="profile-card" aria-labelledby="profile-summary-title">
+  @if (bannerUrl(); as bannerUrl) {
+    <img
+      class="profile-banner"
+      [ngSrc]="bannerUrl"
+      fill
+      [alt]="''"
+      priority
+      (error)="markBannerAsFailed()"
+    />
+  }
+
+  <div class="profile-overlay" aria-hidden="true"></div>
+
+  <div class="avatar" aria-hidden="true">
+    @if (avatarUrl(); as avatarUrl) {
+      <img
+        [ngSrc]="avatarUrl"
+        width="96"
+        height="96"
+        [alt]="''"
+        priority
+        (error)="markAvatarAsFailed()"
+      />
+    } @else {
+      <span>{{ displayName().charAt(0).toUpperCase() }}</span>
+    }
+  </div>
+
+  <div class="profile-summary">
+    <h2 id="profile-summary-title">Resumen</h2>
+
+    @if (fullGamerTag(); as fullGamerTag) {
+      <p class="gamer-tag">{{ fullGamerTag }}</p>
+    } @else {
+      <p class="gamer-tag muted">Sin jugador vinculado</p>
+    }
+  </div>
+</section>
+
+<section class="details-card" aria-labelledby="profile-details-title">
+  <h2 id="profile-details-title">Details</h2>
+
+  <dl>
+    <div>
+      <dt>Name</dt>
+      <dd>{{ profile().name ?? 'Not informed' }}</dd>
+    </div>
+
+    <div>
+      <dt>Pronouns</dt>
+      <dd>{{ profile().genderPronoun ?? 'Not informed' }}</dd>
+    </div>
+
+    <div>
+      <dt>Prefix</dt>
+      <dd>{{ profile().prefix ?? 'Not informed' }}</dd>
+    </div>
+
+    <div>
+      <dt>Gamertag</dt>
+      <dd>{{ profile().gamerTag ?? 'Not informed' }}</dd>
+    </div>
+  </dl>
+</section>

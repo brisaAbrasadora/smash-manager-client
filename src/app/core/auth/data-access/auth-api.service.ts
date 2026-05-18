@@ -14,7 +14,7 @@ export class AuthApiService {
   }
 
   logout(): Observable<void> {
-    return this.http.post<void>('api/auth/logout', null, {
+    return this.http.post<void>('/api/auth/logout', null, {
       withCredentials: true,
     });
   }

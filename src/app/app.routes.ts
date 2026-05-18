@@ -20,6 +20,11 @@ export const routes: Routes = [
       import('./features/tournaments/tournaments.routes').then((m) => m.TOURNAMENT_ROUTES),
   },
   {
+    path: 'profile',
+    canMatch: [authGuard],
+    loadChildren: () => import('./features/profile/profile.routes').then((m) => m.PROFILE_ROUTES),
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('./features/not-found/not-found.routes').then((m) => m.NOT_FOUND_ROUTES),

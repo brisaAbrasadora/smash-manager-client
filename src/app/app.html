@@ -5,6 +5,10 @@
     <a routerLink="/tournaments" routerLinkActive="active" ariaCurrentWhenActive="page"
       >Tournaments</a
     >
+
+    @if (isAuthenticated()) {
+      <a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">Profile</a>
+    }
   </nav>
 
   @if (isAuthenticated()) {

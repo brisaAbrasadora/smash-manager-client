@@ -1,0 +1,162 @@
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.page-header p {
+  margin: 0;
+  color: #4b5563;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profile-card,
+.details-card {
+  border: 1px solid #d7d7d7;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
+}
+
+.profile-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 14rem;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  background: radial-gradient(circle at top left, rgb(55 65 81 / 0.9), rgb(17 24 39 / 1)), #111827;
+  padding: 1.25rem;
+}
+
+.profile-banner {
+  z-index: -3;
+  object-fit: cover;
+  opacity: 0.45;
+}
+
+.profile-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      rgb(17 24 39 / 0.92) 0%,
+      rgb(17 24 39 / 0.72) 38%,
+      rgb(17 24 39 / 0.35) 100%
+    ),
+    linear-gradient(0deg, rgb(17 24 39 / 0.88) 0%, rgb(17 24 39 / 0.25) 70%);
+}
+
+.profile-summary {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.45);
+}
+
+.profile-summary h2 {
+  margin: 0 0 0.5rem;
+}
+
+.profile-summary .gamer-tag {
+  color: #ffffff;
+}
+
+.profile-summary .muted {
+  color: #d1d5db;
+}
+
+.avatar {
+  display: grid;
+  flex: 0 0 6rem;
+  width: 6rem;
+  height: 6rem;
+  place-items: center;
+  overflow: hidden;
+  border: 3px solid rgb(255 255 255 / 0.85);
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgb(0 0 0 / 0.35);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar span {
+  line-height: 1;
+}
+
+.gamer-tag {
+  margin: 0;
+  color: #374151;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.muted {
+  color: #6b7280;
+}
+
+.details-card {
+  padding: 1.25rem;
+}
+
+.details-card h2 {
+  margin: 0 0 0.5rem;
+}
+
+dl {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+dl div {
+  display: grid;
+  gap: 0.25rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+}
+
+dt {
+  color: #4b5563;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+dd {
+  margin: 0;
+  color: #111827;
+}
+
+@media (max-width: 40rem) {
+  .profile-card {
+    min-height: 18rem;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+  }
+
+  .profile-overlay {
+    background:
+      linear-gradient(0deg, rgb(17 24 39 / 0.95) 0%, rgb(17 24 39 / 0.45) 100%),
+      linear-gradient(90deg, rgb(17 24 39 / 0.75) 0%, rgb(17 24 39 / 0.25) 100%);
+  }
+}
