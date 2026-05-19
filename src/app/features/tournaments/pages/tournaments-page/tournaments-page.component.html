@@ -1,171 +1,218 @@
 <header class="page-header">
   <div>
     <h1>Torneos</h1>
-    <p>Consulta tus torneos registrados y descubre próximos torneos de Smash en España.</p>
+    <p>Consulta torneos de España y torneos en los que ya estás registrado.</p>
   </div>
 
-  <a class="primary-action" routerLink="/tournaments/new"> Crear torneo </a>
+  <a class="primary-action" href="https://www.start.gg/" target="_blank" rel="noopener noreferrer">
+    Ir a start.gg
+  </a>
 </header>
 
-<section class="section-block" aria-labelledby="registered-tournaments-title">
-  <div class="section-heading">
-    <h2 id="registered-tournaments-title">Mis torneos registrados</h2>
-    <p>Torneos en los que aparece tu usuario de start.gg.</p>
-  </div>
+<nav class="tabs" aria-label="Secciones de torneos">
+  <button
+    id="registered-tab"
+    type="button"
+    class="tab-button"
+    [class.tab-button--active]="activeTab() === 'registered'"
+    [attr.aria-selected]="activeTab() === 'registered'"
+    aria-controls="registered-panel"
+    role="tab"
+    (click)="selectTab('registered')"
+  >
+    Mis torneos
+  </button>
 
-  @let registered = registeredTournaments();
+  <button
+    id="spain-tab"
+    type="button"
+    class="tab-button"
+    [class.tab-button--active]="activeTab() === 'spain'"
+    [attr.aria-selected]="activeTab() === 'spain'"
+    aria-controls="spain-panel"
+    role="tab"
+    (click)="selectTab('spain')"
+  >
+    España
+  </button>
+</nav>
 
-  @if (registered.upcoming.length > 0) {
-    <section class="registered-group" aria-labelledby="registered-upcoming-title">
-      <h3 id="registered-upcoming-title">Próximos</h3>
+@if (activeTab() === 'registered') {
+  <section id="registered-panel" class="tab-panel" role="tabpanel" aria-labelledby="registered-tab">
+    @let registered = registeredTournaments();
 
-      <section class="tournament-grid" aria-label="Mis próximos torneos registrados">
-        @for (tournament of registered.upcoming; track tournament.externalId) {
-          <article class="tournament-card tournament-card--registered">
-            <header class="card-header">
-              <div>
-                <h4>
-                  <a [routerLink]="['/tournaments', tournament.externalId]">
-                    {{ tournament.name }}
-                  </a>
-                </h4>
-
-                <p>Registrado</p>
-              </div>
-            </header>
-
-            <dl>
-              <div>
-                <dt>Inicio</dt>
-                <dd>{{ tournament.startAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
-              </div>
-
-              <div>
-                <dt>Formato</dt>
-                <dd>{{ computeFormat(tournament) }}</dd>
-              </div>
-
-              @if (tournament.city) {
-                <div>
-                  <dt>Ciudad</dt>
-                  <dd>{{ tournament.city }}</dd>
-                </div>
-              }
-            </dl>
-
-            <a class="secondary-action" [routerLink]="['/tournaments', tournament.externalId]">
-              Ver detalle
-            </a>
-          </article>
-        }
-      </section>
-    </section>
-  } @else {
-    <div class="empty-state">
-      <h3>No estás registrado en ningún torneo próximo.</h3>
-      <p>Cuando te apuntes a un torneo futuro en start.gg, aparecerá aquí.</p>
-    </div>
-  }
-
-  @if (registered.past.length > 0) {
-    <section class="registered-group" aria-labelledby="registered-past-title">
-      <h3 id="registered-past-title">Anteriores</h3>
-
-      <section class="tournament-grid" aria-label="Mis torneos registrados anteriores">
-        @for (tournament of registered.past; track tournament.externalId) {
-          <article class="tournament-card tournament-card--past">
-            <header class="card-header">
-              <div>
-                <h4>
-                  <a [routerLink]="['/tournaments', tournament.externalId]">
-                    {{ tournament.name }}
-                  </a>
-                </h4>
-
-                <p>Finalizado</p>
-              </div>
-            </header>
-
-            <dl>
-              <div>
-                <dt>Inicio</dt>
-                <dd>{{ tournament.startAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
-              </div>
-
-              <div>
-                <dt>Formato</dt>
-                <dd>{{ computeFormat(tournament) }}</dd>
-              </div>
-
-              @if (tournament.city) {
-                <div>
-                  <dt>Ciudad</dt>
-                  <dd>{{ tournament.city }}</dd>
-                </div>
-              }
-            </dl>
-
-            <a class="secondary-action" [routerLink]="['/tournaments', tournament.externalId]">
-              Ver detalle
-            </a>
-          </article>
-        }
-      </section>
-    </section>
-  }
-</section>
-
-<section class="section-block" aria-labelledby="discover-tournaments-title">
-  <div class="section-heading">
-    <h2 id="discover-tournaments-title">Torneos disponibles</h2>
-    <p>Próximos torneos españoles offline de Super Smash Bros. Ultimate.</p>
-  </div>
-
-  @if (tournaments(); as tournaments) {
-    @if (tournaments.length > 0) {
-      <section class="tournament-grid" aria-label="Listado de torneos">
-        @for (tournament of tournaments; track tournament.externalId) {
-          <article class="tournament-card">
-            <header class="card-header">
-              <div>
-                <h3>
-                  <a [routerLink]="['/tournaments', tournament.externalId]">
-                    {{ tournament.name }}
-                  </a>
-                </h3>
-              </div>
-            </header>
-
-            <dl>
-              <div>
-                <dt>Inicio</dt>
-                <dd>{{ tournament.startAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
-              </div>
-
-              <div>
-                <dt>Formato</dt>
-                <dd>{{ computeFormat(tournament) }}</dd>
-              </div>
-
-              @if (tournament.city) {
-                <div>
-                  <dt>Ciudad</dt>
-                  <dd>{{ tournament.city }}</dd>
-                </div>
-              }
-            </dl>
-
-            <a class="secondary-action" [routerLink]="['/tournaments', tournament.externalId]">
-              Ver detalle
-            </a>
-          </article>
-        }
-      </section>
-    } @else {
-      <div class="empty-state">
-        <h3>No hay torneos disponibles.</h3>
-        <p>No se han encontrado torneos con los filtros actuales.</p>
+    <section class="section-block" aria-labelledby="registered-upcoming-title">
+      <div class="section-heading">
+        <h2 id="registered-upcoming-title">Próximos torneos registrados</h2>
+        <p>Torneos futuros en los que aparece tu usuario de start.gg.</p>
       </div>
-    }
-  }
-</section>
+
+      @if (registered.upcoming.length > 0) {
+        <section class="tournament-grid" aria-label="Mis próximos torneos registrados">
+          @for (tournament of registered.upcoming; track tournament.externalId) {
+            <article class="tournament-card tournament-card--registered">
+              <header class="card-header">
+                <div>
+                  <h3>
+                    <a [routerLink]="['/tournaments', tournament.externalId]">
+                      {{ tournament.name }}
+                    </a>
+                  </h3>
+
+                  <p>Registrado</p>
+                </div>
+              </header>
+
+              <dl>
+                <div>
+                  <dt>Inicio</dt>
+                  <dd>{{ tournament.startAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
+                </div>
+
+                <div>
+                  <dt>Formato</dt>
+                  <dd>{{ computeFormat(tournament) }}</dd>
+                </div>
+
+                @if (tournament.city) {
+                  <div>
+                    <dt>Ciudad</dt>
+                    <dd>{{ tournament.city }}</dd>
+                  </div>
+                }
+              </dl>
+
+              <a class="secondary-action" [routerLink]="['/tournaments', tournament.externalId]">
+                Ver detalle
+              </a>
+            </article>
+          }
+        </section>
+      } @else {
+        <div class="empty-state">
+          <h3>No estás registrado en ningún torneo próximo.</h3>
+          <p>Cuando te apuntes a un torneo futuro en start.gg, aparecerá aquí.</p>
+        </div>
+      }
+    </section>
+
+    <section class="section-block" aria-labelledby="registered-past-title">
+      <div class="section-heading">
+        <h2 id="registered-past-title">Torneos anteriores</h2>
+        <p>Historial de torneos registrados. Se cargan visualmente por bloques.</p>
+      </div>
+
+      @if (registered.past.length > 0) {
+        <section class="tournament-grid" aria-label="Mis torneos registrados anteriores">
+          @for (tournament of visiblePastTournaments(); track tournament.externalId) {
+            <article class="tournament-card tournament-card--past">
+              <header class="card-header">
+                <div>
+                  <h3>
+                    <a [routerLink]="['/tournaments', tournament.externalId]">
+                      {{ tournament.name }}
+                    </a>
+                  </h3>
+
+                  <p>Finalizado</p>
+                </div>
+              </header>
+
+              <dl>
+                <div>
+                  <dt>Inicio</dt>
+                  <dd>{{ tournament.startAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
+                </div>
+
+                <div>
+                  <dt>Formato</dt>
+                  <dd>{{ computeFormat(tournament) }}</dd>
+                </div>
+
+                @if (tournament.city) {
+                  <div>
+                    <dt>Ciudad</dt>
+                    <dd>{{ tournament.city }}</dd>
+                  </div>
+                }
+              </dl>
+
+              <a class="secondary-action" [routerLink]="['/tournaments', tournament.externalId]">
+                Ver detalle
+              </a>
+            </article>
+          }
+        </section>
+
+        @if (hasHiddenPastTournaments()) {
+          <div class="load-more">
+            <button type="button" class="load-more-button" (click)="showMorePastTournaments()">
+              Mostrar más anteriores
+            </button>
+          </div>
+        }
+      } @else {
+        <div class="empty-state">
+          <h3>No hay torneos anteriores registrados.</h3>
+          <p>Cuando tengas historial de participación, aparecerá aquí.</p>
+        </div>
+      }
+    </section>
+  </section>
+}
+
+@if (activeTab() === 'spain') {
+  <section id="spain-panel" class="tab-panel" role="tabpanel" aria-labelledby="spain-tab">
+    <section class="section-block" aria-labelledby="spain-tournaments-title">
+      <div class="section-heading">
+        <h2 id="spain-tournaments-title">Torneos de España</h2>
+        <p>Torneos disponibles filtrados por país.</p>
+      </div>
+
+      @if (tournaments().length > 0) {
+        <section class="tournament-grid" aria-label="Torneos de España">
+          @for (tournament of tournaments(); track tournament.externalId) {
+            <article class="tournament-card">
+              <header class="card-header">
+                <div>
+                  <h3>
+                    <a [routerLink]="['/tournaments', tournament.externalId]">
+                      {{ tournament.name }}
+                    </a>
+                  </h3>
+
+                  <p>{{ tournament.city }}</p>
+                </div>
+
+                <span class="status">{{ computeFormat(tournament) }}</span>
+              </header>
+
+              <dl>
+                <div>
+                  <dt>Inicio</dt>
+                  <dd>{{ tournament.startAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
+                </div>
+
+                @if (tournament.primaryContact) {
+                  <div>
+                    <dt>Contacto</dt>
+                    <dd>{{ tournament.primaryContact }}</dd>
+                  </div>
+                }
+              </dl>
+
+              <a class="secondary-action" [routerLink]="['/tournaments', tournament.externalId]">
+                Ver detalle
+              </a>
+            </article>
+          }
+        </section>
+      } @else {
+        <div class="empty-state">
+          <h3>No hay torneos disponibles.</h3>
+          <p>Prueba más tarde o revisa los filtros de búsqueda.</p>
+        </div>
+      }
+    </section>
+  </section>
+}

@@ -205,3 +205,67 @@ dd {
     text-align: left;
   }
 }
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #dedee3;
+}
+
+.tab-button {
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: #5f5f66;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tab-button:hover {
+  color: #181818;
+}
+
+.tab-button:focus-visible {
+  outline: 3px solid #4f46e5;
+  outline-offset: 3px;
+}
+
+.tab-button--active {
+  border-bottom-color: #181818;
+  color: #181818;
+}
+
+.tab-panel {
+  display: block;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.load-more-button {
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border: 1px solid #181818;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: #181818;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.load-more-button:hover {
+  background: #f3f3f4;
+}
+
+.load-more-button:focus-visible {
+  outline: 3px solid #4f46e5;
+  outline-offset: 3px;
+}
