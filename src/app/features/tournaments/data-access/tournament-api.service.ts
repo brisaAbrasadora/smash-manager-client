@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Tournament, TournamentSummary } from '../models/tournament.model';
+import { RegisteredTournaments, Tournament, TournamentSummary } from '../models/tournament.model';
 
 @Injectable({ providedIn: 'root' })
 export class TournamentApiService {
@@ -13,5 +13,9 @@ export class TournamentApiService {
 
   findById(id: number): Observable<Tournament> {
     return this.http.get<Tournament>(`/api/tournaments/${id}`);
+  }
+
+  findRegistered(): Observable<RegisteredTournaments> {
+    return this.http.get<RegisteredTournaments>('/api/tournaments/registered');
   }
 }

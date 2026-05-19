@@ -7,18 +7,16 @@ export interface TournamentSummary {
   // status: TournamentStatus;
   startAt: string;
   url: string;
-  isOnline: boolean;
+  hasOfflineEvents: boolean;
+  hasOnlineEvents: boolean;
   primaryContact: string;
 }
 
-export interface Tournament {
-  externalId: number;
-  name: string;
-  city: string;
-  // status: TournamentStatus;
-  startAt: string;
+export interface RegisteredTournaments {
+  upcoming: TournamentSummary[];
+  past: TournamentSummary[];
+}
+
+export interface Tournament extends TournamentSummary {
   description?: string;
-  url: string;
-  isOnline: boolean;
-  primaryContact: string;
 }

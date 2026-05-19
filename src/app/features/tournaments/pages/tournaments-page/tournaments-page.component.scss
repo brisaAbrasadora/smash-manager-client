@@ -35,6 +35,45 @@
   background: #303030;
 }
 
+.primary-action:focus-visible,
+.secondary-action:focus-visible,
+.empty-state a:focus-visible,
+.tournament-card a:focus-visible {
+  outline: 3px solid #4f46e5;
+  outline-offset: 3px;
+}
+
+.section-block {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-heading {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #5f5f66;
+}
+
+.registered-group {
+  display: grid;
+  gap: 1rem;
+}
+
+.registered-group h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
 .tournament-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -50,6 +89,16 @@
   background: #ffffff;
 }
 
+.tournament-card--registered {
+  border-color: #b7d7b7;
+  background: #fbfffb;
+}
+
+.tournament-card--past {
+  border-color: #d6d6dc;
+  background: #fafafa;
+}
+
 .card-header {
   display: flex;
   align-items: flex-start;
@@ -57,15 +106,21 @@
   gap: 1rem;
 }
 
-h2 {
+.tournament-card h3,
+.tournament-card h4 {
   margin: 0;
   font-size: 1.125rem;
 }
 
+.tournament-card h3 a,
+.tournament-card h4 a,
 h2 a {
+  color: #181818;
   text-decoration: none;
 }
 
+.tournament-card h3 a:hover,
+.tournament-card h4 a:hover,
 h2 a:hover {
   text-decoration: underline;
 }
@@ -120,11 +175,33 @@ dd {
   background: #ffffff;
 }
 
-.empty-state h2 {
+.empty-state h2,
+.empty-state h3 {
   margin: 0;
 }
 
 .empty-state p {
   margin: 0.5rem 0 1.5rem;
   color: #5f5f66;
+}
+
+@media (max-width: 640px) {
+  .page-header {
+    flex-direction: column;
+  }
+
+  .primary-action,
+  .empty-state a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  dl div {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  dd {
+    text-align: left;
+  }
 }

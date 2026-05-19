@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TournamentSummary } from '../../models/tournament.model';
+import { RegisteredTournaments, TournamentSummary } from '../../models/tournament.model';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -11,5 +11,18 @@ import { DatePipe } from '@angular/common';
   styleUrl: './tournaments-page.component.scss',
 })
 export class TournamentsPage {
+  protected readonly registeredTournaments = input.required<RegisteredTournaments>();
   protected readonly tournaments = input.required<TournamentSummary[]>();
+
+  protected computeFormat(tournament: TournamentSummary): string {
+    if (tournament.hasOnlineEvents && tournament.hasOfflineEvents) {
+      return 'Mixed';
+    }
+
+    if (tournament.hasOnlineEvents) {
+      return 'Online';
+    }
+
+    return 'Offline';
+  }
 }
